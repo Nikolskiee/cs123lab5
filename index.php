@@ -51,7 +51,7 @@
     ?>
 
     <!-- FORM -->
-    <form method="post" class="row g-3 align-items-center" style="padding-left:1%">
+    <form method="post" action="index.php" class="row g-3 align-items-center" style="padding-left:1%">
         <div class="col-auto">
             <label for="subject" class="col-form-label">Subject: </label>
         </div>
