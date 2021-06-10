@@ -140,7 +140,7 @@
     </table>
     <hr>
     <!-- EXPORT -->
-    <form method="post" action="index.php" class="row g-3 align-items-center" style="padding-left:1%">
+    <form method="post" class="row g-3 align-items-center" style="padding-left:1%">
         <div class="col-auto">
             <button type="submit" name="export" value="pdf" id="pdf" class="btn btn-primary">Export as PDF</button>
         </div>
