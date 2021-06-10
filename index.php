@@ -16,16 +16,13 @@
 
     <?php
         $subjectErr = $roomErr = $emailErr = null;
-        $subject = $room = $email = $btn = $exp = null;
+        $subject = $room = $email = $btn = null;
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             if(isset($_POST["remove"])) {
                 $btn = $_POST["remove"];
             }
             else if(isset($_POST["email"])) {
                 $email = test_input($_POST["email"]);
-            }
-            else if(isset($_POST["export"])) {
-                $exp = test_input($_POST["export"]);
             }
             else {
                 if(empty($_POST["subject"])) {
@@ -142,39 +139,9 @@
     <!-- EXPORT -->
     <form method="post" action="pdf.php" class="row g-3 align-items-center" style="padding-left:1%">
         <div class="col-auto">
-            <button type="submit" name="export" value="pdf" id="pdf" class="btn btn-primary">Export as PDF</button>
+            <button type="submit" id="pdf" class="btn btn-primary">Export as PDF</button>
         </div>
     </form>
-
-    <?php
-
-        require __DIR__."/vendor/autoload.php";
-        
-        if(isset($exp)) {
-
-            $pdf = new TCPDF($orientation='P', $unit='mm', $format='A4', $unicode=true, $encoding='UTF-8', $diskcache=false, $pdfa=false);
-            $pdf->AddPage();
-
-            $html = "<html><body><table><tr><th><b>Subject</b></th><th><b>Room</b></th></tr>";
-
-            $xml = simplexml_load_file("class.xml") or die("Error: Cannot create object");
-            foreach($xml->course as $course) {
-                $html = $html."<tr>";
-                $html = $html."<td>".$course->subject."</td>";
-                $html = $html."<td>".$course->room."</td>";
-                $html = $html."</tr>";
-            }
-
-            $html = $html."</table></body></html>";
-
-
-            $pdf->writeHTML($html,$ln = true,$fill = false,$reseth = false,$cell = false,$align = '');
-
-            $pdf->Output('rooms.pdf');
-
-            } 
-
-    ?>
 
 
     </body>
